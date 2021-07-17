@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: faucet
+spec:
+  selector:
+    matchLabels:
+      app: faucet
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: faucet
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+        - name: faucet
+          image: superhow/gcr-faucet:latest
+          resources:
+          imagePullPolicy: Always
+          env:
+          - name: DEFAULT_NODE
+            value: __node__
+          - name: HOST
+            value: __host__
+          - name: PORT
+            value: 80
+          - name: NATIVE_CURRENCY_NAME
+            value: __currency-name__
+          - name: NATIVE_CURRENCY_ID
+            value: __currency-id__
+          - name: NATIVE_CURRENCY_OUT_MIN
+            value: 500000000
+          - name: NATIVE_CURRENCY_OUT_MAX
+            value: 1000000000
+          - name: FAUCET_PRIVATE_KEY
+            value: __private-key__  
+          - name: MAX_FEE
+            value: 20000
+          - name: ENOUGH_BALANCE
+            value: __enought-balance__
+          - name: MAX_UNCONFIRMED
+            value: 5
+          - name: BLACKLIST_MOSAIC_IDS
+            value: '["5494F47A9BC6A639","111ABBB879673630"]'
+          - name: EXPLORER_URL
+            value: __explorer-url__
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: faucet
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: faucet

@@ -18,33 +18,33 @@ Claim tokens for development and testing purposes on the GCR network.
 1. Clone the project.
 
 
- ```
+```
 git clone https://github.com/superhow/gcr-faucet.git
- ```
+```
 
 2. Navigate to the project folder.
 
- ```
+```
 cd gcr-faucet
- ```
+```
 	
 3. Install the dependencies. This may take a while.
 
- ```
+```
 npm install 
- ```
+```
 
 4. Build the packages.
 
- ```
+```
 npm build run
- ```
+```
     
 5. Start the app.
 
- ```
+```
 npm start
- ```
+```
     
 6. Access the Faucet on your web browser. The default may be http://127.0.0.1:4000. If you get a "connection refused" error, check your .env file.
 ***

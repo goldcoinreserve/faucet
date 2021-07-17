@@ -1,6 +1,6 @@
 {
   "name": "gcr-faucet",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "GCR faucet web application",
   "author": "",
   "homepage": "https://github.com/44uk/symbol-faucet",
